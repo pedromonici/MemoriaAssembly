@@ -1,35 +1,35 @@
 jmp main
 
 
-tela0Linha1  : string "*--0--*--1--*--2--*--3--*--4--*         "
-tela0Linha2  : string "|     |     |     |     |     |         "
-tela0Linha3  : string "|     |     |     |     |     |         "
-tela0Linha4  : string "|     |     |     |     |     |         "
-tela0Linha5  : string "*--5--*--6--*--7--*--8--*--9--*         "
-tela0Linha6  : string "|     |     |     |     |     |         "
-tela0Linha7  : string "|     |     |     |     |     |         "
-tela0Linha8  : string "|     |     |     |     |     |         "
-tela0Linha9  : string "*--10-*--11-*--12-*--13-*--14-*         "
-tela0Linha10 : string "|     |     |     |     |     |         "
-tela0Linha11 : string "|     |     |     |     |     |         "
-tela0Linha12 : string "|     |     |     |     |     |         "
-tela0Linha13 : string "*--15-*--16-*--17-*--18-*--19-*         "
-tela0Linha14 : string "|     |     |     |     |     |         "
-tela0Linha15 : string "|     |     |     |     |     |         "
-tela0Linha16 : string "|     |     |     |     |     |         "
-tela0Linha17 : string "*-----*-----*-----*-----*-----*         "
+tela0Linha1  : string "    *--0--*--1--*--2--*--3--*--4--*     "
+tela0Linha2  : string "    |     |     |     |     |     |     "
+tela0Linha3  : string "    |     |     |     |     |     |     "
+tela0Linha4  : string "    |     |     |     |     |     |     "
+tela0Linha5  : string "    *--5--*--6--*--7--*--8--*--9--*     "
+tela0Linha6  : string "    |     |     |     |     |     |     "
+tela0Linha7  : string "    |     |     |     |     |     |     "
+tela0Linha8  : string "    |     |     |     |     |     |     "
+tela0Linha9  : string "    *--10-*--11-*--12-*--13-*--14-*     "
+tela0Linha10 : string "    |     |     |     |     |     |     "
+tela0Linha11 : string "    |     |     |     |     |     |     "
+tela0Linha12 : string "    |     |     |     |     |     |     "
+tela0Linha13 : string "    *--15-*--16-*--17-*--18-*--19-*     "
+tela0Linha14 : string "    |     |     |     |     |     |     "
+tela0Linha15 : string "    |     |     |     |     |     |     "
+tela0Linha16 : string "    |     |     |     |     |     |     "
+tela0Linha17 : string "    *-----*-----*-----*-----*-----*     "
 tela0Linha18 : string "                                        "
 tela0Linha19 : string "                                        "
 tela0Linha20 : string "                                        "
 tela0Linha21 : string "                                        "
 tela0Linha22 : string "                                        "
 tela0Linha23 : string "                                        "
-tela0Linha24 : string "                                        "
-tela0Linha25 : string "                                        "
-tela0Linha26 : string "                                        "
-tela0Linha27 : string "                                        "
-tela0Linha28 : string "                                        "
-tela0Linha29 : string "                                        "
+tela0Linha24 : string "      POINTS:                           "
+tela0Linha25 : string "    *---------*------*                  "
+tela0Linha26 : string "    | PLAYER 1|      |                  "
+tela0Linha27 : string "    *---------*------*                  "
+tela0Linha28 : string "    | PLAYER 2|      |                  "
+tela0Linha29 : string "    *---------*------*                  "
 
 test : var #20
 static test + #0, #0
@@ -53,76 +53,312 @@ static test + #17, #7
 static test + #18, #8
 static test + #19, #9
 
+title_frame : string "            MEMORIA ASSEMBLY            "
 error_label : string "INVALID CARD TYPE ENTER TO TRY AGAIN    "
 empty_card_error: string "INVALID POSITION TYPE ENTER TO TRY AGAIN"
 
-cards: var #20       ; int rand
-empty: var #20       ; booleano
-user_input: var #3   ; input do numero do usuario + ENTER
+cards: var #20        ; int rand
+empty: var #20        ; booleano
+user_input: var #3    ; input do numero do usuario + ENTER
+cards_are_equals: var #1 ; 0 -> diferentes || 1 -> iguais
 
 players_points: var #2 ; pontos dos jogadores
-user_input_num: var #1 ; pontos do jogador2 -> int
-
-; num_pair:          var #1 ; numero de pares totais no tabuleiro
-; num_visible_pairs: var #1 ; numero de pares visíveis no tabuleiro
+user_input_num: var #1 ; input do jogador -> int
 
 cur_player_idx:  var #1 ; indice do jogador que esta jogando atualmente
 cur_player_pair: var #2 ; par de cartas escolhidas na jogada atualmente
 
-type_a_card: string " Digite uma carta:                                                              "
-rand : string "01234567890123456789                    "
+start_game_str    : string "          PRESS ENTER TO START          "
+type_a_card       : string " Digite uma carta:                                                              "
+player_1_win_str  : string "PLAYER 1 WIN                            "
+player_2_win_str  : string "PLAYER 2 WIN                            "
+player_1_turn_str : string "PLAYER 1 TURN                           "
+player_2_turn_str : string "PLAYER 2 TURN                           "
+draw_str          : string "EMPATE                                  "
+
+rand0             : string "01234567890123456789                    "
+rand1             : string "98765432109876543210                    "
+rand2             : string "87656781212353440990                    "
+rand3             : string "16594487262390083175                    "
+rand4             : string "84373571260651899240                    "
+rand5             : string "83651027057463919842                    "
+rand6             : string "02275938346611754980                    "
+rand7             : string "60417485722830193965                    "
+rand8             : string "49872568140391503276                    "
+rand9             : string "30091289637127554864                    "
+
 
 main:
+    push fr
     push r0
     push r1
     push r2
+    push r3
+    push r4
+    push r5
+    push r6
+
+    call print_title_frame
+    call start_game
     loadn r0, #tela0Linha1  ; endereço onde começa a primeira linha do tabuleiro
     call print_board
 
-    call rand_cards_init
+    ;call rand_cards_init
     call empty_init
 
     loadn r1, #10 ; quantidade total de pares
     loadn r2, #0  ; quantidade atual de pares visiveis
     loadn r3, #0  ; indice do jogador que esta jogando atualmente
-    loadn r4, #0  ; indice da escolha desse jogador
     loop_main:
+        call print_player_turn
         choice_one: ; cur_player_pair[r4] = input()
-            call get_input
-            call play
-        inc r4
+            call   get_input
+            call   play
+            ;breakp
+            loadn  r6, #user_input_num
+            loadn  r5, #cur_player_pair
+            loadi  r6, r6
+            storei r5, r6
 
         choice_two: ; cur_player_pair[r4] = input()
-            call get_input
-            call play
-        loadn r4, #0
-
-        call check_cur_pair ; checar se o conteudo do label cur_player_pair sao igual
+            call   get_input
+            call   play
+            ;breakp
+            loadn  r5, #cur_player_pair
+            inc    r5
+            loadn  r6, #user_input_num
+            loadi  r6, r6
+            storei r5, r6
+        ;breakp
+        call  delay
+        call  check_cur_pair ; checar se o conteudo do label cur_player_pair sao iguais
+        loadn r4, #cards_are_equals
+        loadi r4, r4
+        loadn r6, #1
+        cmp   r4, r6
+        jeq   pair_is_equals
+        jne   pair_is_not_equals
         pair_is_equals:
-            inc players_points[r3]
-            inc r2
-            update empty
+            loadn r4, #0
+            cmp   r4, r3
+            jeq   update_points_player_0
+            jne   update_points_player_1
+
+            update_points_player_0:
+                loadn  r6, #players_points
+                loadi  r5, r6
+                inc    r5
+                storei r6, r5
+                call update_score
+                jmp pair_is_equals_end
+
+            update_points_player_1:
+                loadn  r6, #players_points
+                inc    r6
+                loadi  r5, r6
+                inc    r5
+                storei r6, r5
+                call update_score
+
+            pair_is_equals_end:
+                inc r2
+                jmp loop_main_end
+
         pair_is_not_equals:
-            pass
+            loadn r0, #0
+            cmp   r3, r0
+            jeq   player_0_turn
+            jne   player_1_turn
 
-        cmp r1, r2
-        jne loop_main
+            player_0_turn:
+                loadn r3, #1
+                jmp pair_is_not_equals_end
+            player_1_turn:
+                loadn r3, #0
 
-    pop r2
-    pop r1
+            pair_is_not_equals_end:
+                call hide_cards
+
+        loop_main_end:
+            cmp r1, r2
+            jne loop_main
+
+    loadn r0, #players_points
+    loadi r1, r0
+    inc   r0
+    loadi r2, r0
+    cmp   r1, r2
+    jgr player_1
+    jle player_2
+    jeq draw
+
+    player_1:
+        loadn r0, #player_1_win_str
+        loadn r1, #760
+        loadn r6, #2304 ;cor
+        call print_str
+        jmp main_end
+    player_2:
+        loadn r0, #player_2_win_str
+        loadn r1, #760
+        loadn r6, #2304 ;cor
+        call print_str
+        jmp main_end
+    draw:
+        loadn r0, #draw_str
+        loadn r1, #760
+        loadn r6, #0 ;cor
+        call print_str
+
+    main_end:
+        pop r6
+        pop r5
+        pop r4
+        pop r3
+        pop r2
+        pop r1
+        pop r0
+        pop fr
+        halt
+
+print_title_frame:
+    push fr
+    push r0
+    push r6
+
+    loadn r0, #title_frame
+    loadn r6, #0 ;cor
+    call print_str
+
+    pop r6
     pop r0
-    halt
+    pop fr
+    rts
+
+start_game:
+    push fr
+    push r0
+    push r1
+    push r2
+    push r6
+
+    loadn r0, #start_game_str
+    loadn r1, #560
+    loadn r6, #2304
+    call  print_str
+
+    loadn r0, #255
+    loadn r2, #0
+    start_game_loop:
+        inc    r2
+        inchar r1
+        cmp    r0, r1
+        jeq    start_game_loop
+
+    loadn r0, #10
+    mod   r0, r2, r0
+
+    loadn r6, #0
+    cmp   r0, r6
+    jeq   init_rand_0
+
+    loadn r6, #1
+    cmp   r0, r6
+    jeq   init_rand_1
+
+    loadn r6, #2
+    cmp   r0, r6
+    jeq   init_rand_2
+
+    loadn r6, #3
+    cmp   r0, r6
+    jeq   init_rand_3
+
+    loadn r6, #4
+    cmp   r0, r6
+    jeq   init_rand_4
+
+    loadn r6, #5
+    cmp   r0, r6
+    jeq   init_rand_5
+
+    loadn r6, #6
+    cmp   r0, r6
+    jeq   init_rand_6
+
+    loadn r6, #7
+    cmp   r0, r6
+    jeq   init_rand_7
+
+    loadn r6, #8
+    cmp   r0, r6
+    jeq   init_rand_8
+
+    loadn r6, #9
+    cmp   r0, r6
+    jeq   init_rand_9
+
+    init_rand_0:
+        loadn r0, #rand0 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_1:
+        loadn r0, #rand1 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_2:
+        loadn r0, #rand2 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_3:
+        loadn r0, #rand3 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_4:
+        loadn r0, #rand4 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_5:
+        loadn r0, #rand5 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_6:
+        loadn r0, #rand6 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_7:
+        loadn r0, #rand7 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_8:
+        loadn r0, #rand8 ; carregar o primeiro numero rand
+        jmp   start_game_exit
+    init_rand_9:
+        loadn r0, #rand9 ; carregar o primeiro numero rand
+
+    start_game_exit:
+        loadn r3, #cards ; vetor de cards
+        loadn r2, #0     ; contador do loop
+        loadn r4, #20    ; numero de cards a serem randomizadas
+        rand_cards_loop:
+            loadi  r5, r0      ; pegar o endereço do vetor de rand
+            storei r3, r5      ; colocar em cards o valor do vetor de rand
+            inc    r0          ; incremento do ponteiro do array de rands
+            inc    r3          ; incremento do ponteiro do array de cards
+            inc    r2          ; counter++
+            cmp    r2, r4      ; if counter == 20, exit call
+            jne   rand_cards_loop
+
+        pop r6
+        pop r2
+        pop r1
+        pop r0
+        pop fr
+        rts
 
 print_board:
     push fr  ; registrador de flags
 
     loadn r0, #tela0Linha1 ; endereço onde começa a primeira linha do tabuleiro
-    loadn r1, #0           ; posicao inicial, começo da tela
+    loadn r1, #40          ; posicao inicial, começo da tela
     loadn r2, #40          ; incremento da posicao da tela
     loadn r3, #41          ; incremento do ponteiro das linhas da tela
     loadn r4, #1200        ; tamanho maximo da tela
 
     print_board_loop:
+        loadn r6, #0 ;cor
         call print_str
         add  r1, r1, r2  ; incrementa a posicao para a segunda linha
         add  r0, r0, r3  ; incrementa o ponteiro para o começo da segunda linha
@@ -132,13 +368,45 @@ print_board:
     pop fr
     rts
 
+print_player_turn:
+    ;breakp
+    push fr
+    push r0
+    push r3
+    push r1
+    push r6
+
+    loadn r4, #0
+    cmp   r3, r4
+    loadn r6, #2304 ;cor
+    jeq   print_player_turn_1
+    jne   print_player_turn_2
+
+    print_player_turn_1:
+        loadn r0, #player_1_turn_str
+        loadn r1, #760
+        call print_str
+        jmp print_player_turn_exit
+    print_player_turn_2:
+        loadn r0, #player_2_turn_str
+        loadn r1, #760
+        call print_str
+
+    print_player_turn_exit:
+        pop r6
+        pop r1
+        pop r3
+        pop r0
+        pop fr
+        rts
+
 print_str:
     push fr
     push r0     ; endereço do inicio da string a ser printada
     push r1     ; posiçao inicial da tela
     push r4     ; tamanho maximo da tela
 
-    loadn r6, #0    ; cor da string
+    ;loadn r6, #0    ; cor da string
     loadn r4, #'\0' ; criterio de parada
     print_str_loop:
         loadi   r5, r0
@@ -157,34 +425,34 @@ print_str:
         pop fr
         rts
 
-rand_cards_init:
-    push fr
-    push r0
-    push r2
-    push r3
-    push r4
-    push r5
+;rand_cards_init:
+    ;push fr
+    ;push r0
+    ;push r2
+    ;push r3
+    ;push r4
+    ;push r5
 
-    loadn r0, #rand  ; carregar o primeiro numero rand
-    loadn r3, #cards ; vetor de cards
-    loadn r2, #0     ; contador do loop
-    loadn r4, #20    ; numero de cards a serem randomizadas
-    rand_cards_loop:
-        loadi  r5, r0      ; pegar o endereço do vetor de rand
-        storei r3, r5      ; colocar em cards o valor do vetor de rand
-        inc    r0          ; incremento do ponteiro do array de rands
-        inc    r3          ; incremento do ponteiro do array de cards
-        inc    r2          ; counter++
-        cmp    r2, r4      ; if counter == 20, exit call
-        jne   rand_cards_loop
+    ;loadn r0, #rand  ; carregar o primeiro numero rand
+    ;loadn r3, #cards ; vetor de cards
+    ;loadn r2, #0     ; contador do loop
+    ;loadn r4, #20    ; numero de cards a serem randomizadas
+    ;rand_cards_loop:
+        ;loadi  r5, r0      ; pegar o endereço do vetor de rand
+        ;storei r3, r5      ; colocar em cards o valor do vetor de rand
+        ;inc    r0          ; incremento do ponteiro do array de rands
+        ;inc    r3          ; incremento do ponteiro do array de cards
+        ;inc    r2          ; counter++
+        ;cmp    r2, r4      ; if counter == 20, exit call
+        ;jne   rand_cards_loop
 
-    pop r5
-    pop r0
-    pop r4
-    pop r3
-    pop r2
-    pop fr
-    rts
+    ;pop r5
+    ;pop r0
+    ;pop r4
+    ;pop r3
+    ;pop r2
+    ;pop fr
+    ;rts
 
 empty_init:
     push fr
@@ -219,9 +487,10 @@ get_input:
     push r1
     push r4
 
-    loadn r1, #720           ; posição da tela a ser impressa a string
+    loadn r1, #800           ; posição da tela a ser impressa a string
     loadn r0, #type_a_card   ; endereço da string a ser impressa
     loadn r4, #1200          ; tamanho maximo da tela
+    loadn r6, #0
     call print_str
     ;breakp
 
@@ -246,7 +515,7 @@ typing_a_card:
     push r6
     push r7
 
-    loadn r1, #742   ; posicao para colocar o char
+    loadn r1, #822   ; posicao para colocar o char
     loadn r4, #1200  ; tamanho maximo da tela
     loadn r2, #255   ; valor padrao do inchar
     loadn r3, #13    ; codigo ascii do enter
@@ -311,10 +580,11 @@ typing_a_card_error:
     push r3
 
     loadn r0, #error_label
-    loadn r1, #760          ; posicao da tela
+    loadn r1, #800          ; posicao da tela
     loadn r2, #13           ; codigo ascii do enter
 
     typing_a_card_error_loop:
+        loadn r6, #0
         call print_str
         inchar r3               ; pega o enter
         cmp    r3, r2           ; if char == enter, go out
@@ -369,9 +639,10 @@ typing_a_card_error_version_two:
     push r3
 
     loadn r0, #error_label
-    loadn r1, #760          ; posicao da tela
+    loadn r1, #800          ; posicao da tela
     loadn r2, #13           ; codigo ascii do enter
 
+    loadn r6, #0
     call print_str
     ;breakp
     typing_a_card_error_loop_yey:
@@ -471,9 +742,10 @@ typing_a_card_error_version_third:
     push r3
 
     loadn r0, #error_label
-    loadn r1, #760          ; posicao da tela
+    loadn r1, #800          ; posicao da tela
     loadn r2, #13           ; codigo ascii do enter
 
+    loadn r6, #0
     call print_str
     typing_a_card_error_loop_maneiro:
         inchar r3               ; pega o enter
@@ -660,45 +932,92 @@ update_table:
     push r3
     push r4
     push r5
+    push r6
 
     ;jmp verify_card_is_empty
 
-    card_is_empty:
-        loadn r0, #83
-        loadn r1, #user_input_num
-        loadi r1, r1
-        loadn r2, #160
-        loadn r3, #5
-        loadn r4, #6
+    loadn r0, #127
+    loadn r1, #user_input_num
+    loadi r1, r1
+    loadn r2, #160
+    loadn r3, #5
+    loadn r4, #6
 
-        div r5, r1, r3
-        mul r5, r5, r2
-        add r0, r0, r5
+    div r5, r1, r3
+    mul r5, r5, r2
+    add r0, r0, r5
 
-        mod r1, r1, r3
-        mul r1, r1, r4
-        add r0, r0, r1   ; r0 -> pos pra printar
+    mod r1, r1, r3
+    mul r1, r1, r4
+    add r0, r0, r1   ; r0 -> pos pra printar
 
-        ; deixar a carta como vista
-        loadn  r1, #user_input_num
-        loadi  r1, r1
-        loadn  r6, #empty
-        add    r6, r6, r1
-        loadn  r2, #1
-        storei r6, r2
+    ; deixar a carta como vista
+    loadn  r1, #user_input_num
+    loadi  r1, r1
+    loadn  r6, #empty
+    add    r6, r6, r1
+    loadn  r2, #1
+    storei r6, r2
 
-        ;breakp
-        loadn r2, #cards
-        add   r2, r2, r1
-        loadi r2, r2
-        loadn r3, #2304
-        add   r2, r2, r3 ; cor vermelho
+    ;breakp
+    loadn r2, #cards
+    add   r2, r2, r1
+    loadi r2, r2
+    loadn r3, #2304
+    add   r2, r2, r3 ; cor vermelho
 
-        ; PRINT RAND NUM
-        outchar r2, r0
+    ; PRINT RAND NUM
+    outchar r2, r0
 
+    pop r6
+    pop r5
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    pop fr
+    rts
 
+check_cur_pair:
+    push fr
+    push r0
+    push r1
+    push r2
+    push r3
+    push r4
+    push r5
+    push r6
+    push r7
 
+    loadn r0, #cur_player_pair
+    loadn r1, #cards_are_equals
+    loadn r5, #cards
+
+    loadi r2, r0
+    add   r5, r5, r2
+    loadi r6, r5
+
+    loadn r5, #cards
+    inc   r0
+    loadi r2, r0
+    add   r5, r5, r2
+    loadi r7, r5
+
+    cmp   r7, r6
+    jeq   pair_is_ok
+
+    loadn  r4, #0
+    storei r1, r4
+    jmp    check_cur_pair_end
+
+    pair_is_ok:
+        loadn  r4, #1
+        storei r1, r4
+
+    check_cur_pair_end:
+        pop r7
+        pop r6
         pop r5
         pop r4
         pop r3
@@ -708,56 +1027,173 @@ update_table:
         pop fr
         rts
 
-;verify_card_is_empty:
-    ;push fr
-    ;push r0
-    ;push r1
-    ;push r2
+hide_cards:
+    push fr
+    push r0
+    push r1
+    push r2
+    push r3
+    push r4
+    push r5
+    push r6
 
-    ;loadn r0, #user_input_num
-    ;loadi r0, r0
+    loadn r0, #127
+    loadn r1, #cur_player_pair
+    loadi r1, r1
+    loadn r2, #160
+    loadn r3, #5
+    loadn r4, #6
 
-    ;loadn r1, #empty
-    ;add   r1, r1, r0
-    ;loadi r1, r1
-    ;loadn r2, #1
-    ;cmp   r1, r2
-    ;jeq   card_is_empty_error
+    div r5, r1, r3
+    mul r5, r5, r2
+    add r0, r0, r5
 
-    ;pop r2
-    ;pop r1
-    ;pop r0
-    ;pop fr
-    ;jmp card_is_empty
+    mod r1, r1, r3
+    mul r1, r1, r4
+    add r0, r0, r1   ; r0 -> pos pra printar
 
-    ;verify_card_is_empty_final:
-        ;pop r2
-        ;pop r1
-        ;pop r0
-        ;pop fr
-        ;jmp loop_main
+    ; deixar a carta como nao vista
+    loadn  r1, #cur_player_pair
+    loadi  r1, r1
+    loadn  r6, #empty
+    add    r6, r6, r1
+    loadn  r2, #0
+    storei r6, r2
 
-;card_is_empty_error:
-    ;push fr
-    ;push r0
-    ;push r1
-    ;push r2
-    ;push r3
+    loadn r2, #32  ; codigo ascii do espaço
 
-    ;loadn r0, #empty_card_error
-    ;loadn r1, #760
-    ;loadn r2, #13
+    ; PRINT SPACE
+    outchar r2, r0
 
-    ;card_is_empty_error_loop:
-        ;call print_str
-        ;inchar r3
-        ;cmp r3, r2
-        ;jne typing_a_card_error_loop
+    loadn r0, #127
+    loadn r1, #cur_player_pair
+    inc   r1
+    loadi r1, r1
+    loadn r2, #160
+    loadn r3, #5
+    loadn r4, #6
 
-    ;pop r3
-    ;pop r2
-    ;pop r1
-    ;pop r0
-    ;pop fr
-    ;jmp verify_card_is_empty_final
+    div r5, r1, r3
+    mul r5, r5, r2
+    add r0, r0, r5
+
+    mod r1, r1, r3
+    mul r1, r1, r4
+    add r0, r0, r1   ; r0 -> pos pra printar
+
+    ; deixar a carta como nao vista
+    loadn  r1, #cur_player_pair
+    inc    r1
+    loadi  r1, r1
+    loadn  r6, #empty
+    add    r6, r6, r1
+    loadn  r2, #0
+    storei r6, r2
+
+    loadn r2, #32  ; codigo ascii do espaço
+
+    ; PRINT SPACE
+    outchar r2, r0
+
+    pop r6
+    pop r5
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    pop fr
+    rts
+
+update_score:
+    push fr
+    push r0     ; comparar
+    push r1
+    push r2     ; player_points
+    push r3     ; jogador atual
+    push r4
+    push r5
+    push r6
+    push r7
+
+    loadn r7, #10
+
+    loadn r1, #players_points
+    loadn r0, #0
+    cmp   r3, r0
+    jeq   player_1_update_score
+    jne   player_2_update_score
+
+    player_1_update_score:
+        loadi   r6, r1
+        cmp     r6, r7
+        jeq     update_score_10_player_1
+        loadn   r4, #48
+        add     r6, r6, r4
+        loadn   r5, #1057
+        outchar r6, r5
+        jmp update_score_end
+    player_2_update_score:
+        inc     r1
+        loadi   r6, r1
+        cmp     r6, r7
+        jeq     update_score_10_player_2
+        loadn   r4, #48
+        add     r6, r6, r4
+        loadn   r5, #1137
+        outchar r6, r5
+        jmp     update_score_end
+
+    update_score_10_player_1:
+        loadn   r4, #49
+        loadn   r5, #1057
+        outchar r4, r5
+        loadn   r4, #48
+        loadn   r5, #1058
+        outchar r4, r5
+        jmp update_score_end
+    update_score_10_player_2:
+        loadn   r4, #49
+        loadn   r5, #1137
+        outchar r4, r5
+        loadn   r4, #48
+        loadn   r5, #1138
+        outchar r4, r5
+
+    update_score_end:
+        pop r7
+        pop r6
+        pop r4
+        pop r5
+        pop r3
+        pop r2
+        pop r1
+        pop r0
+        pop fr
+        rts
+
+delay:
+    push fr
+    push r0
+    push r1
+    push r3
+
+    loadn r3, #0
+
+    loadn r0, #3000
+    loopj:
+        loadn r1, #3000
+        loopi:
+            dec r1
+            cmp r1, r3
+            jne loopi
+        dec r0
+        cmp r0, r3
+        jne loopj
+
+    pop r3
+    pop r1
+    pop r0
+    pop fr
+    rts
 
