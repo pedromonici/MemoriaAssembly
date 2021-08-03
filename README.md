@@ -18,8 +18,8 @@ Ao inicializarmos a simulação teremos a tela:
 Ao apertar entre o jogo começará. Fazemos isso para podermos ter "tabuleiros" de jogo diferentes. Isso é feito contando o tempo a partir do momento em que começamos a simulação e depois fazemos um mod entre o tempo guardado e quantos tabuleiros temos.
 
 Aqui temos a tela do jogo:
-![](https://i.imgur.com/S84rkWC.png)
 
+![](https://i.imgur.com/S84rkWC.png)
 O usuário digitará os valores das cartas que deseja "virar".
 
 Foi tratado todos os casos de erro, assim o usuário só pode digitar cartas entre 0 e 19, cujas quais, são as cartas válidas no tabuleiro.
