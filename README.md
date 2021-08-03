@@ -20,6 +20,7 @@ Ao apertar entre o jogo começará. Fazemos isso para podermos ter "tabuleiros" 
 Aqui temos a tela do jogo:
 
 ![](https://i.imgur.com/S84rkWC.png)
+
 O usuário digitará os valores das cartas que deseja "virar".
 
 Foi tratado todos os casos de erro, assim o usuário só pode digitar cartas entre 0 e 19, cujas quais, são as cartas válidas no tabuleiro.
