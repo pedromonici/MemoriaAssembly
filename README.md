@@ -1,2 +1,8 @@
 # Memoria Assembly
-# MemoriaAssembly
+
+
+## Como inicializar o jogo:
+
+
+## Como jogar:
+
