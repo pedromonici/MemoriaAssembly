@@ -32,4 +32,4 @@ Os números acima, nas linhas, são os números das cartas.
 Aqui podemos ver um jogo finalizado. Podemos ver que cada player tem sua pontuação e também existe uma mensagem de qual o jogador vencedor. Existe também a possibilidade de empate.
 
 ## Video explicativo:
-[](https://youtu.be/c8zgaWS-pfk)
+[Video](https://youtu.be/c8zgaWS-pfk)
